@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>CL2 - Juan Huanaco</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6">
+	<h2 class="font-bold text-2xl my-4 text-center">Página Principal</h2>
+	<p>Hola, estás viendo el home de esta aplicación web.</p>
+	<p>Para ver la lista del personal de un área en especifico debes colocar en la url lo siguiente: "http://localhost:8080/lista<b>?area_id=<i>id</i></b>". También puedes colocar "http://localhost:8080/lista" para obtener el listado de todas las areas.</p>
+	<p>Aún mejor, puedes dar clic en los códigos de la tabla debajo para ver su listado de personal</p>
+	<p>Listado de Personal de todas las areas <a class="text-cyan-500 underline bold" href="http://localhost:8080/lista">aquí</a></p>
+	<table class="border-2 rounded-lg border-black mx-auto block" style="width: 40vw;">
+		<thead class="border-b-2 border-gray-400 block">
+			<tr class="flex">
+				<th align="left" class="w-2/4 p-4">Id</th>
+				<th align="left" class="w-2/4 p-4">Area</th>
+			</tr>
+		</thead>
+		<tbody class="block">
+			<tr class="flex border-b-2 border-gray-50" th:each="area: ${areaList}">
+				<td class="w-2/4 p-4"><a class="text-cyan-500 underline bold" th:href="@{/lista(area_id=${area.getId})}" th:text="${area.getId}"></a></td>
+				<td class="w-2/4 p-4" th:text="${area.getNombre}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
